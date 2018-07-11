@@ -1,16 +1,13 @@
 <template>
-    <div id = "spot-container">
-        Name:{{places.name}}<br>
-
-
-
+    <div id = "detail-view">
+        {{places.rating}}
     </div>
-
 </template>
 
 <script>
 export default {
     props: ['places'],
+
 }
 </script>
 
