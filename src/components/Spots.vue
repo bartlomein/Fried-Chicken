@@ -1,10 +1,15 @@
 <template>
-    <div> {{$store.state.count}} </div>
+    <div id = "spot-container">
+        Name:{{places.name}}<br>
+        Rating {{places.rating}}
+
+    </div>
+
 </template>
 
 <script>
 export default {
-
+    props: ['places'],
 }
 </script>
 

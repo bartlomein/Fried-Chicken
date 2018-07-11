@@ -1,78 +1,78 @@
 <template>
   <div id="app">
     <Address @send-location="updateLocation"></Address>
-
-    
+    <div id = "all-the-spots" v-for="place in placesArray">
+    <Spots :places="place"></Spots>
+    </div>
     <div id="results"></div>
   </div>
 </template>
 
 <script>
-import Address from './components/Address.vue';
-
+import Address from "./components/Address.vue";
+import Spots from "./components/Spots.vue";
 
 export default {
-  name: 'app',
+  name: "app",
   components: {
-    Address
+    Address,
+    Spots
   },
-   data() {
-     return{
+  data() {
+    return {
       place: null,
-      lat:null,
-      lon:null,
-      posts:null,
-     }
+      lat: null,
+      lon: null,
+      placesArray: null
+    };
   },
-   methods: {
+  methods: {
     updateLocation(googlePlace) {
       this.place = googlePlace;
       this.lat = this.place.geometry.location.lat();
       this.lon = this.place.geometry.location.lng();
-  
-       var request = {
-    location: new google.maps.LatLng(this.lat, this.lon),
-    radius: '50000',
-    keyword: 'boof'
-};
+      let vm = this;
 
-    var container = document.getElementById('results');
+      let request = {
+        location: new google.maps.LatLng(this.lat, this.lon),
+        radius: "4000",
+        keyword: "chicken"
+      };
 
-      var service = new google.maps.places.PlacesService(container);
+      let container = document.getElementById("results");
+
+      let service = new google.maps.places.PlacesService(container);
+
       service.nearbySearch(request, callback);
 
 
-    function callback(results, status) {
-      console.log(results)
-    if (status == google.maps.places.PlacesServiceStatus.OK) {
 
-        for (var i = 0; i < results.length; i++) {
+      function callback(results, status, placesArray1) {
 
-            container.innerHTML += results[i].name + '<br />';
+          
+        if (status == google.maps.places.PlacesServiceStatus.OK) {
+
+          vm.placesArray = results;
+          console.log(vm.placesArray)
+         
         }
+        
+        
+      }
+      console.log(placesArray);
+      //https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670522,151.1957362&radius=1500&type=restaurant&keyword=cruise&key=YOUR_API_KEY
     }
-}
-
-
-
-      console.log(this.lat,this.lon)
-    //https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670522,151.1957362&radius=1500&type=restaurant&keyword=cruise&key=YOUR_API_KEY
-
-
-    }
-   },
-   watch: {
+  },
+  watch: {
     // whenever question changes, this function will run
-    place: function () {
-      
-    }
+    place: function() {}
   }
-}
+};
 </script>
 
 <style>
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
