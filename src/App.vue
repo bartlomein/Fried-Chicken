@@ -7,9 +7,6 @@
       <div id = "all-the-spots" v-for="(place, key, index) in placesArray">
           <div id = "one-spot">
         <Spots :places="place"></Spots>
-        
-          <button>MORE</button>
-          <Detail :places="place"></Detail>
           </div>
         </div>
       </div>    
