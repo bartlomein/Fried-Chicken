@@ -14,16 +14,16 @@
 </template>
 
 <script>
+
 import Address from "./components/Address.vue";
 import Spots from "./components/Spots.vue";
-import Detail from "./components/Detail.vue";
+
 
 export default {
   name: "app",
   components: {
     Address,
     Spots,
-    Detail
   },
   data() {
     return {
