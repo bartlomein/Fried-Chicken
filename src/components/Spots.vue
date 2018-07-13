@@ -7,14 +7,18 @@
 
     <div id = "modal-container">
     <sweet-modal  ref="modal" :title="places.name">
-        
+        <sweet-modal-tab title="Info" id="tab1">
         {{places.rating}}
         <div id = "details" v-if="detailedPlace" >
             <div id = "phoneNumber" @click ="callNumber(detailedPlace.formatted_phone_number)">
             {{detailedPlace.formatted_phone_number}}
             </div>
         </div>
+        </sweet-modal-tab>
+        <sweet-modal-tab title="Reviews" id="tab2" >TEST</sweet-modal-tab>
+        <sweet-modal-tab title="Map" id="tab3"  ><div id="map"></div></sweet-modal-tab>
         
+            
         </sweet-modal>
     </div>
 </div>
@@ -23,12 +27,13 @@
 <script>
 export default {
   props: ["places"],
-  data() {
+  data: function() {
     return {
       placeId: '',
       detailedPlace: null,
       formattedPhone:'',
-      phone:null
+      phone:null,
+      
     };
   },
   mounted(){
@@ -39,6 +44,7 @@ export default {
     callModal() {
       this.$refs.modal.open();
     },
+
     callNumber(phone){
         console.log(phone);
         let newphone = phone.replace('(','').replace(')','').replace(' ','').replace('-','');
@@ -49,6 +55,7 @@ export default {
         window.open(newphone);
     },
     updatePlace(places) {
+        console.log(places)
       this.placeId = places.place_id;
       console.log(this.placeId);
       let vm = this;
@@ -73,10 +80,17 @@ export default {
 
         }
       }
+      
+      
     }
   },
 };
 </script>
 
-<style>
+<style scoped>
+ #map {
+        height: 400px;
+        width:400px;
+      }
+
 </style>
