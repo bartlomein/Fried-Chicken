@@ -42,8 +42,9 @@ export default {
       let vm = this;
       let request = {
         location: new google.maps.LatLng(this.lat, this.lon),
-        radius: "4000",
-        keyword: "chicken"
+        radius: "3000",
+        keyword: "chicken",
+        rankby:"distance"
       };
 
       let container = document.getElementById("results");
