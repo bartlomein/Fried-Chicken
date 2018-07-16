@@ -28,7 +28,7 @@ export default {
 
     });
   },
-  data() {
+  data: function() {
     return {
       googlePlace: null,
     }

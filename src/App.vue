@@ -8,7 +8,7 @@
     <div id="results"></div>
       <div id = "all-the-spots" v-for="(place, key, index) in placesArray">
           <div id = "one-spot">
-        <Spots ref="spotsRef" :places="place" ></Spots>
+        <Spots  :places="place" ></Spots>
           </div>
         </div>
       </div>    
@@ -25,13 +25,14 @@ export default {
     Address,
     Spots
   },
-  data() {
+  data: function() {
     return {
       place: null,
       lat: null,
       lon: null,
       placesArray: null,
       showDetail: false,
+      image: '.../assets/fried-chicken.png'
 
     };
   },
@@ -104,13 +105,19 @@ export default {
         var marker = new google.maps.Marker({
           map: map,
           position: place.geometry.location,
-          icon: "https://cdn4.iconfinder.com/data/icons/48x48-free-object-icons/48/Turkey.png"
+          icon: "https://www.shareicon.net/data/32x32/2016/08/26/820443_food_512x512.png"
         });
+
+
+        
 
         google.maps.event.addListener(marker, "click", function() {
 
-          infowindow.setContent();
-          vm.$refs.spotsRef.testLog();
+          infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
+                'Rating: ' + place.rating );
+          
+          infowindow.open(map, this);
+
         });
       }
       initMap();
