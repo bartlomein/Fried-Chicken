@@ -41,11 +41,13 @@ export default {
   methods: {
     callModal() {
       this.$refs.modal.open();
-      this.places
       
     },
     refreshMap(){
 
+    },
+    testLog(){
+      console.log("test");
     },
 
 
@@ -80,7 +82,7 @@ export default {
         ]
       };
 
-      
+
       let container = document.getElementById("results-one");
       let service = new google.maps.places.PlacesService(container);
 

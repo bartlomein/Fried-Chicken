@@ -8,7 +8,7 @@
     <div id="results"></div>
       <div id = "all-the-spots" v-for="(place, key, index) in placesArray">
           <div id = "one-spot">
-        <Spots :places="place"></Spots>
+        <Spots ref="spotsRef" :places="place" ></Spots>
           </div>
         </div>
       </div>    
@@ -108,10 +108,9 @@ export default {
         });
 
         google.maps.event.addListener(marker, "click", function() {
-          infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
-                'Rating: ' + place.rating );
-          
-          infowindow.open(map, this);
+
+          infowindow.setContent();
+          vm.$refs.spotsRef.testLog();
         });
       }
       initMap();
