@@ -31,7 +31,8 @@ export default {
       lat: null,
       lon: null,
       placesArray: null,
-      showDetail: false
+      showDetail: false,
+
     };
   },
   mounted() {},
@@ -65,42 +66,55 @@ export default {
       //https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670522,151.1957362&radius=1500&type=restaurant&keyword=cruise&key=YOUR_API_KEY
     },
     toggleDetail() {
-      var markers = [];
+      var map;
+      var infowindow;
       let vm = this;
-      function initialize() {
-        var beaches = vm.placesArray
 
-        var map = new google.maps.Map(document.getElementById("map"), {
-          zoom: 12,
-          center: new google.maps.LatLng(vm.place.geometry.location.lat(), vm.place.geometry.location.lng()),
-          mapTypeId: google.maps.MapTypeId.ROADMAP
+      function initMap() {
+        var pyrmont = { lat: vm.lat, lng: vm.lon };
+
+        map = new google.maps.Map(document.getElementById("map"), {
+          center: pyrmont,
+          zoom: 12
         });
 
-        var infowindow = new google.maps.InfoWindow();
-
-        for (var i = 0; i < vm.placesArray.length; i++) {
-          var newMarker = new google.maps.Marker({
-            position: new google.maps.LatLng(beaches[i][1], beaches[i][2]),
-            map: map,
-            title: beaches[i][0]
-          });
-
-          google.maps.event.addListener(
-            newMarker,
-            "click",
-            (function(newMarker, i) {
-              return function() {
-                infowindow.setContent(beaches[i][0]);
-                infowindow.open(map, newMarker);
-              };
-            })(newMarker, i)
-          );
-
-          markers.push(newMarker);
-        }
+        infowindow = new google.maps.InfoWindow();
+        var service = new google.maps.places.PlacesService(map);
+        service.nearbySearch(
+          {
+            location: pyrmont,
+            radius: 3000,
+            keyword: ["chicken"]
+          },
+          callback
+        );
       }
 
-      initialize();
+      function callback(results, status) {
+        if (status === google.maps.places.PlacesServiceStatus.OK) {
+          for (var i = 0; i < results.length; i++) {
+            createMarker(results[i]);
+          }
+        }
+        
+      }
+
+      function createMarker(place) {
+        var placeLoc = place.geometry.location;
+        var marker = new google.maps.Marker({
+          map: map,
+          position: place.geometry.location,
+          icon: "https://cdn4.iconfinder.com/data/icons/48x48-free-object-icons/48/Turkey.png"
+        });
+
+        google.maps.event.addListener(marker, "click", function() {
+          infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
+                'Rating: ' + place.rating );
+          
+          infowindow.open(map, this);
+        });
+      }
+      initMap();
     }
   }
 };
