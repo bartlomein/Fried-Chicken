@@ -3,7 +3,7 @@
         {{places.name}}
         <br>
         <div id="results-one"></div>
-        <button @click="callModal(), updatePlace(places), formatAddress(places)"></button>
+        <div class = "btn" @click="callModal(), updatePlace(places), formatAddress(places)">More Info</div>
 
 
         <div id="modal-container">
@@ -204,6 +204,18 @@ export default {
   text-align: right;
   font-weight: 900;
   padding-right: 50px;
+}
+.btn{
+  background-color:#ffd166;
+  position:absolute;
+  bottom:0;
+  padding:5px;
+  border-radius:5px;
+
+}
+#spot-container{
+  height: 100%;
+  position:relative;
 }
 #phone-word {
   font-weight: bold;

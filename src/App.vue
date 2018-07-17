@@ -1,16 +1,22 @@
 <template>
   <div id="app">
-    <div id="map">
-      </div>
+    <div id="logo"></div>
+    <div id = "chicken-bg"> <img src="./assets/chicken-face.png" alt="" srcset=""></div>
     <div id = "search">
       <Address @send-location="updateLocation"></Address>
     </div>
-    <div id="results">
+    <div id = "map-and-results">
+    <div id="map">
+      </div>
+      <div id="results">
       <div id = "all-the-spots" v-for="(place, key, index) in placesArray">
           <div id = "one-spot">
         <Spots  :places="place" ></Spots>
           </div></div>
         </div>
+        </div>
+    
+    
       </div>    
   </div>
 </template>
@@ -134,18 +140,57 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+  background-image: ".../assets/chicken-bg.png";
+  position:relative;
+
+}
+#map-and-results{
+  display:grid;
+  grid-template-columns: 400px auto;
+}
+#search{
+  padding-bottom:20px;
 }
 #map {
   height: 400px;
   width: 400px;
+
 }
 
 
 /*results grid*/
 #results{
   display:grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-rows: minmax(100px, auto);
+  padding-left:50px;
 
+
+}
+#one-spot{
+  background-color:#ef476f;
+  padding:5px;
+  height:100px;
+  width:200px;
+  opacity: 0.98;
+}
+
+#all-the-spots{
+  width:70%;
+  border-radius:10px;
+
+  padding:5px;
+  margin:10px;
+}
+#chicken-bg img{
+  position:absolute;
+  bottom:10;
+  right:0;
+
+
+}
+#chicken-bg img{
+  width:30%;
 }
 
 </style>
