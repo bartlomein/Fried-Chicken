@@ -5,11 +5,11 @@
     <div id = "search">
       <Address @send-location="updateLocation"></Address>
     </div>
-    <div id="results"></div>
+    <div id="results">
       <div id = "all-the-spots" v-for="(place, key, index) in placesArray">
           <div id = "one-spot">
         <Spots  :places="place" ></Spots>
-          </div>
+          </div></div>
         </div>
       </div>    
   </div>
@@ -139,4 +139,13 @@ export default {
   height: 400px;
   width: 400px;
 }
+
+
+/*results grid*/
+#results{
+  display:grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+
+}
+
 </style>

@@ -1,6 +1,6 @@
 <template>
     <div id="spot-container">
-        Name:{{places.name}}
+        {{places.name}}
         <br>
         <div id="results-one"></div>
         <button @click="callModal(), updatePlace(places), formatAddress(places)"></button>
