@@ -1,24 +1,28 @@
 <template>
-  <div id="app">
+<div id="app">
     <div id="logo"></div>
-    <div id = "chicken-bg"> <img src="./assets/chicken-bg.png" alt="" srcset=""></div>
-    <div id = "search">
-      <Address @send-location="updateLocation"></Address>
+    <div id="chicken-bg">
+        <img src="./assets/chicken-bg.png" alt="" srcset="">
     </div>
-    <div id = "map-and-results">
-    <div id="map">
-      </div>
-      <div id="results" >
-      <div id = "all-the-spots" v-for="(place, key, index) in placesArray">
-          <div id = "one-spot">
-        <Spots  :places="place" ></Spots>
-          </div></div>
+    <div id="search">
+        <Address @send-location="updateLocation"></Address>
+    </div>
+    <div id="map-and-results">
+        <div id="map">
         </div>
+        <div id="results" >
+            <div id="all-the-spots" v-for="placeone in placesArray">
+                <div id="one-spot">
+                    <Spots :places="placeone"></Spots>
+                </div>
+            </div>
         </div>
-    
-    
-      </div>    
-  </div>
+       
+    </div>
+
+
+
+</div>
 </template>
 
 <script>
@@ -42,18 +46,18 @@ export default {
 
     };
   },
-  mounted() {},
-  methods: {
-    updateLocation(googlePlace) {
-      this.place = googlePlace;
-      this.lat = this.place.geometry.location.lat();
-      this.lon = this.place.geometry.location.lng();
+  watch:{
+    place(){
+      console.log("array changed");
+
+      
+      this.place.lat = this.place.geometry.location.lat();
+      this.place.lon = this.place.geometry.location.lng();
       let vm = this;
       let request = {
-        location: new google.maps.LatLng(this.lat, this.lon),
+        location: new google.maps.LatLng(this.place.lat, this.place.lon),
         radius: "3000",
-        keyword: "chicken",
-        rankby: "distance"
+        keyword: "chicken"
       };
 
       let container = document.getElementById("results");
@@ -64,12 +68,22 @@ export default {
 
       function callback(results, status) {
         if (status == google.maps.places.PlacesServiceStatus.OK) {
-          vm.placesArray = results;
+          vm.$nextTick(function(){
+            vm.placesArray = results;
+            console.log("next tick");
+          })
+          
           console.log(vm.placesArray);
+
           vm.toggleDetail();
         }
       }
-
+    }
+  },
+  methods: {
+    updateLocation(googlePlace) {
+      console.log(googlePlace);
+      this.place = googlePlace;
       //https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670522,151.1957362&radius=1500&type=restaurant&keyword=cruise&key=YOUR_API_KEY
     },
     toggleDetail() {
@@ -78,7 +92,7 @@ export default {
       let vm = this;
 
       function initMap() {
-        var pyrmont = { lat: vm.lat, lng: vm.lon };
+        var pyrmont = { lat: vm.place.lat, lng: vm.place.lon };
 
         map = new google.maps.Map(document.getElementById("map"), {
           center: pyrmont,
@@ -98,6 +112,7 @@ export default {
       }
 
       function callback(results, status) {
+
         if (status === google.maps.places.PlacesServiceStatus.OK) {
           for (var i = 0; i < results.length; i++) {
             createMarker(results[i]);
@@ -107,7 +122,7 @@ export default {
       }
 
       function createMarker(place) {
-        var placeLoc = place.geometry.location;
+
         var marker = new google.maps.Marker({
           map: map,
           position: place.geometry.location,

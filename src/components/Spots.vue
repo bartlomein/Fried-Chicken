@@ -102,6 +102,9 @@ export default {
       formattedAddress: ""
     };
   },
+  mounted() {
+    console.log("mounted")
+  },
   methods: {
     callModal() {
       this.$refs.modal.open();

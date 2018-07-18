@@ -21,8 +21,9 @@ export default {
       // let lat = place.geometry.location.lat();
       // let lon = place.geometry.location.lng();
       // let city = ac[0]["short_name"];
-
+      
       this.$emit('send-location', place);
+      this.googlePlace = null;
       this.googlePlace = place;
 
 
