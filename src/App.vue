@@ -1,14 +1,14 @@
 <template>
   <div id="app">
     <div id="logo"></div>
-    <div id = "chicken-bg"> <img src="./assets/chicken-face.png" alt="" srcset=""></div>
+    <div id = "chicken-bg"> <img src="./assets/chicken-bg.png" alt="" srcset=""></div>
     <div id = "search">
       <Address @send-location="updateLocation"></Address>
     </div>
     <div id = "map-and-results">
     <div id="map">
       </div>
-      <div id="results">
+      <div id="results" >
       <div id = "all-the-spots" v-for="(place, key, index) in placesArray">
           <div id = "one-spot">
         <Spots  :places="place" ></Spots>
@@ -133,15 +133,20 @@ export default {
 </script>
 
 <style>
+body{
+  background-color:#2176AE;
+}
 #app {
+
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
-  background-image: ".../assets/chicken-bg.png";
-  position:relative;
+
+
+  height: 100%;
 
 }
 #map-and-results{
@@ -152,7 +157,7 @@ export default {
   padding-bottom:20px;
 }
 #map {
-  height: 400px;
+  height: 600px;
   width: 400px;
 
 }
@@ -161,18 +166,20 @@ export default {
 /*results grid*/
 #results{
   display:grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  grid-template-rows: minmax(100px, auto);
+  grid-template-columns: repeat(auto-fit, minmax(0px, 1fr));
+
   padding-left:50px;
 
 
 }
 #one-spot{
-  background-color:#ef476f;
+  background-color:#fcfcfc;
   padding:5px;
   height:100px;
   width:200px;
   opacity: 0.98;
+  border-radius: 10px;
+  box-shadow: 2px 2px 20px black;
 }
 
 #all-the-spots{
@@ -183,14 +190,17 @@ export default {
   margin:10px;
 }
 #chicken-bg img{
-  position:absolute;
-  bottom:10;
-  right:0;
+  position:relative;
+
 
 
 }
 #chicken-bg img{
-  width:30%;
+  width:100%;
+  position:absolute;
+    top:0;
+  right:0;
+  z-index: -1;
 }
 
 </style>
