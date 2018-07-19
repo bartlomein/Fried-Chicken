@@ -11,7 +11,7 @@
         <div id="map">
         </div>
         <div id="results" >
-            <div id="all-the-spots" v-for="placeone in placesArray">
+            <div id="all-the-spots" v-for="placeone in placesArray" :key="placeone.id">
                 <div id="one-spot">
                     <Spots :places="placeone"></Spots>
                 </div>
@@ -49,6 +49,7 @@ export default {
   watch:{
     place(){
       console.log("array changed");
+      this.$forceUpdate();
 
       
       this.place.lat = this.place.geometry.location.lat();
@@ -112,7 +113,7 @@ export default {
       }
 
       function callback(results, status) {
-
+  vm.placesArray = results;
         if (status === google.maps.places.PlacesServiceStatus.OK) {
           for (var i = 0; i < results.length; i++) {
             createMarker(results[i]);
