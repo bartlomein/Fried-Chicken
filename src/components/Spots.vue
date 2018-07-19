@@ -1,5 +1,5 @@
 <template>
-    <div id="spot-container">
+    <div id="spot-container" v-if="places">
         {{places.name}}
         <br>
         <div id="results-one"></div>
@@ -118,6 +118,7 @@ export default {
     openWebsite(site){
       window.open(site);
     },
+    
 
     callNumber(phone) {
       let newphone = phone

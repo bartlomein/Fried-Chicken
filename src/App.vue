@@ -1,6 +1,7 @@
 <template>
 <div id="app">
     <div id="logo"></div>
+    <div id = "update"> <button @click="refresh"> </button> </div>
     <div id="chicken-bg">
         <img src="./assets/chicken-bg.png" alt="" srcset="">
     </div>
@@ -10,12 +11,14 @@
     <div id="map-and-results">
         <div id="map">
         </div>
+
         <div id="results" >
             <div id="all-the-spots" v-for="placeone in placesArray" :key="placeone.id">
                 <div id="one-spot">
-                    <Spots :places="placeone"></Spots>
-                </div>
+                    <Spots :places.sync="placeone"></Spots>
+
             </div>
+        </div>
         </div>
        
     </div>
@@ -45,6 +48,9 @@ export default {
       image: '.../assets/fried-chicken.png'
 
     };
+  },
+  mounted(){
+    console.log("app mounted");
   },
   watch:{
     place(){
@@ -87,6 +93,9 @@ export default {
       this.place = googlePlace;
       //https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670522,151.1957362&radius=1500&type=restaurant&keyword=cruise&key=YOUR_API_KEY
     },
+    refresh(){
+     this.$forceUpdate();
+    },
     toggleDetail() {
       var map;
       var infowindow;
@@ -113,7 +122,7 @@ export default {
       }
 
       function callback(results, status) {
-  vm.placesArray = results;
+
         if (status === google.maps.places.PlacesServiceStatus.OK) {
           for (var i = 0; i < results.length; i++) {
             createMarker(results[i]);
@@ -181,8 +190,8 @@ body{
 
 /*results grid*/
 #results{
-  display:grid;
-  grid-template-columns: repeat(auto-fit, minmax(0px, 1fr));
+
+  display: flex;
 
   padding-left:50px;
 
