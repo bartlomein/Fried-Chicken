@@ -1,6 +1,6 @@
 <template>
 <div id="app">
-    <div id="logo"></div>
+    <div id="logo"> {{ $store.state.count }}</div>
     <div id = "update"> <button @click="refresh"> </button> </div>
     <div id="chicken-bg">
         <img src="./assets/chicken-bg.png" alt="" srcset="">
