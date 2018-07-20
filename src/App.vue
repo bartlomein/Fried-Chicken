@@ -12,13 +12,11 @@
         <div id="map">
         </div>
 
-        <div id="results" >
-            <div id="all-the-spots" v-for="placeone in placesArray" :key="placeone.id">
-                <div id="one-spot">
+        <div id="results">
+                <div id="one-spot" v-for="placeone in placesArray" :key="placeone.id">
                     <Spots :places.sync="placeone"></Spots>
+                    </div>
 
-            </div>
-        </div>
         </div>
        
     </div>
@@ -55,6 +53,7 @@ export default {
   watch:{
     place(){
       console.log("array changed");
+      this.placesArray = null;
       this.$forceUpdate();
 
       
@@ -76,8 +75,18 @@ export default {
       function callback(results, status) {
         if (status == google.maps.places.PlacesServiceStatus.OK) {
           vm.$nextTick(function(){
-            vm.placesArray = results;
+            if (vm.placesArray != null){
+            let newArray = results;
+            
+            vm.placesArray.splice(0,vm.placesArray.length);
+
+            vm.placesArray.push(newArray);
             console.log("next tick");
+            }
+            else{
+              vm.placesArray = results;
+              console.log(placesArray);
+            }
           })
           
           console.log(vm.placesArray);
