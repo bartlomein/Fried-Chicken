@@ -53,7 +53,7 @@ body {
 
 .search-location {
   display: block;
-  width: 60vw;
+  width: 400px;
   margin: 0 auto;
   margin-top: 5vw;
   font-size: 20px;

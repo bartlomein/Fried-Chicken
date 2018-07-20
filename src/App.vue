@@ -9,6 +9,7 @@
         <Address @send-location="updateLocation"></Address>
     </div>
     <div id="map-and-results">
+      
         <div id="map">
         </div>
 
@@ -24,6 +25,7 @@
         </div>
        
     </div>
+    
 
 
 
@@ -61,7 +63,8 @@ export default {
       let request = {
         location: new google.maps.LatLng(this.place.lat, this.place.lon),
         radius: "3000",
-        keyword: "chicken"
+        keyword: "chicken",
+
       };
 
       let container = document.getElementById("results");
@@ -75,9 +78,16 @@ export default {
           vm.$nextTick(function() {
             console.log(results);
 
-            let newArray = results.filter(function (item) {
-	              return item.opening_hours.open_now;
-            });
+            let newArray = [];
+            for (let index = 0; index < results.length; index++) {
+              if (results[index].opening_hours ) {
+                newArray.push(results[index]);
+              }
+              
+              
+            }
+
+           
             console.log(newArray);
 
             vm.placesArray = newArray;
@@ -120,9 +130,17 @@ export default {
       }
 
       function callback(results, status) {
+
+        let newArray = [];
+        for (let index = 0; index < results.length; index++) {
+              if (results[index].opening_hours ) {
+                newArray.push(results[index]);
+              }
+        }
+
         if (status === google.maps.places.PlacesServiceStatus.OK) {
-          for (var i = 0; i < results.length; i++) {
-            createMarker(results[i]);
+          for (var i = 0; i < newArray.length; i++) {
+            createMarker(newArray[i]);
           }
         }
       }
@@ -174,7 +192,7 @@ body {
   padding-bottom: 20px;
 }
 #map {
-  height: 600px;
+  height: 400px;
   width: 400px;
 }
 
@@ -182,17 +200,19 @@ body {
 #results {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap:20px;
   padding-left: 50px;
 }
 #one-spot {
-  background-color: #fcfcfc;
-  padding: 5px;
-  height: 80px;
-  width: 200px;
+
+
+  height: 50px;
+  width: 220px;
 
   border-radius: 10px;
-  box-shadow: 2px 2px 20px black;
+  
 }
+
 
 #all-the-spots {
   width: 70%;
