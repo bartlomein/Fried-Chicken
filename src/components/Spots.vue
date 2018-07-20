@@ -101,15 +101,15 @@ export default {
   },
   data: function() {
     return {
-      placeId: "",
-      detailedPlace: null,
+      placeId: this.places.place_id,
+      detailedPlace: this.places,
       formattedPhone: "",
       phone: null,
       formattedAddress: ""
     };
   },
   mounted() {
-    console.log(this.places)
+
   },
   
   methods: {
@@ -139,7 +139,7 @@ export default {
     },
     updatePlace(places) {
       console.log(places);
-      this.placeId = places.place_id;
+
       console.log(this.placeId);
       let vm = this;
 
