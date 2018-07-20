@@ -1,5 +1,5 @@
 <template>
-    <div id="spot-container" v-if="places">
+    <div id="spot-container" >
         {{places.name}}
         <br>
         <div id="results-one"></div>
@@ -31,7 +31,7 @@
                             </div>
                         </div>
                         <div id="hours-container">
-                            <div id="hours-of-operation-text">Hours of Operation:</div>
+                            <div id="hours-of-operation-text" >Hours of Operation:</div>
                             <div id="hours-of-operation" v-for="hour in detailedPlace.opening_hours.weekday_text">
                                 {{hour}}
                             </div>
@@ -93,6 +93,12 @@
 <script>
 export default {
   props: ["places"],
+  watch:{
+    places(){
+      console.log(places)
+      this.detailedPlace = places;
+    }
+  },
   data: function() {
     return {
       placeId: "",
@@ -102,9 +108,7 @@ export default {
       formattedAddress: ""
     };
   },
-  mounted() {
-
-  },
+  
   methods: {
     callModal() {
       this.$refs.modal.open();
@@ -148,7 +152,8 @@ export default {
           "review",
           "adr_address",
           "website",
-          "url"
+          "url",
+          "permanently_closed"
         ]
       };
 

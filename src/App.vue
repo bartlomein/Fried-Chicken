@@ -12,10 +12,12 @@
         <div id="map">
         </div>
 
-        <div id="results">
+        <div id="results" >
                 <div id="one-spot" v-for="placeone in placesArray" :key="placeone.id">
+
                     <Spots :places.sync="placeone"></Spots>
                     </div>
+
 
         </div>
        
@@ -176,9 +178,9 @@ body {
 #one-spot {
   background-color: #fcfcfc;
   padding: 5px;
-  height: 100px;
+  height: 80px;
   width: 200px;
-  opacity: 0.98;
+
   border-radius: 10px;
   box-shadow: 2px 2px 20px black;
 }
