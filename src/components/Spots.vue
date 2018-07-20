@@ -103,7 +103,7 @@ export default {
     };
   },
   mounted() {
-    console.log("mounted")
+
   },
   methods: {
     callModal() {
@@ -160,7 +160,7 @@ export default {
       function callback(place, status) {
         if (status == google.maps.places.PlacesServiceStatus.OK) {
           vm.detailedPlace = place;
-          console.log(vm.detailedPlace);
+
         }
       }
     }
@@ -211,15 +211,14 @@ export default {
 }
 .btn{
   background-color:#ffd166;
-  position:absolute;
-  bottom:0;
-  padding:5px;
+
+  
   border-radius:5px;
 
 }
 #spot-container{
   height: 100%;
-  position:relative;
+
 }
 #phone-word {
   font-weight: bold;

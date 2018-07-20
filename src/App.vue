@@ -1,10 +1,10 @@
 <template>
 <div id="app">
-    <div id="logo"> {{ $store.state.count }}</div>
-    <div id = "update"> <button @click="refresh"> </button> </div>
-    <div id="chicken-bg">
+    <div id="logo"> </div>
+
+    <!-- <div id="chicken-bg">
         <img src="./assets/chicken-bg.png" alt="" srcset="">
-    </div>
+    </div> -->
     <div id="search">
         <Address @send-location="updateLocation"></Address>
     </div>
@@ -42,21 +42,15 @@ export default {
       lat: null,
       lon: null,
       placesArray: null,
-      showDetail: false,
-      image: '.../assets/fried-chicken.png'
-
+      showDetail: false
     };
   },
-  mounted(){
-    console.log("app mounted");
-  },
-  watch:{
-    place(){
-      console.log("array changed");
+  mounted() {},
+  watch: {
+    place() {
       this.placesArray = null;
       this.$forceUpdate();
 
-      
       this.place.lat = this.place.geometry.location.lat();
       this.place.lon = this.place.geometry.location.lng();
       let vm = this;
@@ -74,22 +68,9 @@ export default {
 
       function callback(results, status) {
         if (status == google.maps.places.PlacesServiceStatus.OK) {
-          vm.$nextTick(function(){
-            if (vm.placesArray != null){
-            let newArray = results;
-            
-            vm.placesArray.splice(0,vm.placesArray.length);
-
-            vm.placesArray.push(newArray);
-            console.log("next tick");
-            }
-            else{
-              vm.placesArray = results;
-              console.log(placesArray);
-            }
-          })
-          
-          console.log(vm.placesArray);
+          vm.$nextTick(function() {
+            vm.placesArray = results;
+          });
 
           vm.toggleDetail();
         }
@@ -98,13 +79,10 @@ export default {
   },
   methods: {
     updateLocation(googlePlace) {
-      console.log(googlePlace);
       this.place = googlePlace;
       //https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670522,151.1957362&radius=1500&type=restaurant&keyword=cruise&key=YOUR_API_KEY
     },
-    refresh(){
-     this.$forceUpdate();
-    },
+
     toggleDetail() {
       var map;
       var infowindow;
@@ -131,33 +109,31 @@ export default {
       }
 
       function callback(results, status) {
-
         if (status === google.maps.places.PlacesServiceStatus.OK) {
           for (var i = 0; i < results.length; i++) {
             createMarker(results[i]);
           }
         }
-        
       }
 
       function createMarker(place) {
-
         var marker = new google.maps.Marker({
           map: map,
           position: place.geometry.location,
-          icon: "https://www.shareicon.net/data/32x32/2016/08/26/820443_food_512x512.png"
+          icon:
+            "https://www.shareicon.net/data/32x32/2016/08/26/820443_food_512x512.png"
         });
 
-
-        
-
         google.maps.event.addListener(marker, "click", function() {
+          infowindow.setContent(
+            "<div><strong>" +
+              place.name +
+              "</strong><br>" +
+              "Rating: " +
+              place.rating
+          );
 
-          infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
-                'Rating: ' + place.rating );
-          
           infowindow.open(map, this);
-
         });
       }
       initMap();
@@ -167,11 +143,10 @@ export default {
 </script>
 
 <style>
-body{
-  background-color:#2176AE;
+body {
+  background-color: #2176ae;
 }
 #app {
-
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -179,62 +154,50 @@ body{
   color: #2c3e50;
   margin-top: 60px;
 
-
-  height: 100%;
-
 }
-#map-and-results{
-  display:grid;
+#map-and-results {
+  display: grid;
   grid-template-columns: 400px auto;
 }
-#search{
-  padding-bottom:20px;
+#search {
+  padding-bottom: 20px;
 }
 #map {
   height: 600px;
   width: 400px;
-
 }
-
 
 /*results grid*/
-#results{
-
-  display: flex;
-
-  padding-left:50px;
-
-
+#results {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  padding-left: 50px;
 }
-#one-spot{
-  background-color:#fcfcfc;
-  padding:5px;
-  height:100px;
-  width:200px;
+#one-spot {
+  background-color: #fcfcfc;
+  padding: 5px;
+  height: 100px;
+  width: 200px;
   opacity: 0.98;
   border-radius: 10px;
   box-shadow: 2px 2px 20px black;
 }
 
-#all-the-spots{
-  width:70%;
-  border-radius:10px;
+#all-the-spots {
+  width: 70%;
+  border-radius: 10px;
 
-  padding:5px;
-  margin:10px;
+  padding: 5px;
+  margin: 10px;
 }
-#chicken-bg img{
-  position:relative;
-
-
+#chicken-bg img {
 
 }
-#chicken-bg img{
-  width:100%;
-  position:absolute;
-    top:0;
-  right:0;
+#chicken-bg img {
+  width: 100%;
+
+  top: 0;
+  right: 0;
   z-index: -1;
 }
-
 </style>
