@@ -13,10 +13,12 @@
         </div>
 
         <div id="results" >
+          
                 <div id="one-spot" v-for="placeone in placesArray" :key="placeone.id">
-
+                    
                     <Spots :places.sync="placeone"></Spots>
                     </div>
+
 
 
         </div>
@@ -71,7 +73,14 @@ export default {
       function callback(results, status) {
         if (status == google.maps.places.PlacesServiceStatus.OK) {
           vm.$nextTick(function() {
-            vm.placesArray = results;
+            console.log(results);
+
+            let newArray = results.filter(function (item) {
+	              return item.opening_hours.open_now;
+            });
+            console.log(newArray);
+
+            vm.placesArray = newArray;
           });
 
           vm.toggleDetail();

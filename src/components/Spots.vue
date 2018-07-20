@@ -108,6 +108,9 @@ export default {
       formattedAddress: ""
     };
   },
+  mounted() {
+    console.log(this.places)
+  },
   
   methods: {
     callModal() {
