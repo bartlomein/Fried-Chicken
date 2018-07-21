@@ -14,15 +14,28 @@
         </div>
 
         <div id="results" >
-          
+
+
                 <div id="one-spot" v-for="placeone in placesArray" :key="placeone.id">
                     
-                    <Spots :places.sync="placeone"></Spots>
+                    <Spots :places.sync="placeone" ></Spots>
+                    <div class = "rating-on-card good" v-if="placeone.rating > 4">
+                      
+                    {{placeone.rating}}<img src="./assets/chicken-face.png" alt="" srcset="">
                     </div>
+                    <div   class = "rating-on-card bad" v-else >
+                      {{placeone.rating}}
+                    
+                    </div>
+                    
+
+                </div>
+
 
 
 
         </div>
+
        
     </div>
     
@@ -48,7 +61,8 @@ export default {
       lat: null,
       lon: null,
       placesArray: null,
-      showDetail: false
+      showDetail: false,
+      transition: true
     };
   },
   mounted() {},
@@ -57,14 +71,14 @@ export default {
       this.placesArray = null;
       this.$forceUpdate();
 
+      
       this.place.lat = this.place.geometry.location.lat();
       this.place.lon = this.place.geometry.location.lng();
       let vm = this;
       let request = {
         location: new google.maps.LatLng(this.place.lat, this.place.lon),
         radius: "3000",
-        keyword: "chicken",
-
+        keyword: "chicken"
       };
 
       let container = document.getElementById("results");
@@ -76,32 +90,21 @@ export default {
       function callback(results, status) {
         if (status == google.maps.places.PlacesServiceStatus.OK) {
           vm.$nextTick(function() {
-
             let newArray = [];
             for (let index = 0; index < results.length; index++) {
-              if (results[index].opening_hours ) {
+              if (results[index].opening_hours) {
                 newArray.push(results[index]);
               }
-              
-              
             }
-
-           
-
-
 
             let newerArray = [];
             for (let index = 0; index < newArray.length; index++) {
-              
               if (newArray[index].opening_hours.open_now != null) {
-                
                 newerArray.push(newArray[index]);
               }
-              
-              
             }
 
-
+            console.log(newerArray);
             vm.placesArray = newerArray;
           });
 
@@ -113,7 +116,6 @@ export default {
   methods: {
     updateLocation(googlePlace) {
       this.place = googlePlace;
-      //https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670522,151.1957362&radius=1500&type=restaurant&keyword=cruise&key=YOUR_API_KEY
     },
 
     toggleDetail() {
@@ -142,43 +144,27 @@ export default {
       }
 
       function callback(results, status) {
-
         let newArray = [];
         for (let index = 0; index < results.length; index++) {
-              if (results[index].opening_hours ) {
-                newArray.push(results[index]);
-              }
+          if (results[index].opening_hours) {
+            newArray.push(results[index]);
+          }
         }
 
         if (status === google.maps.places.PlacesServiceStatus.OK) {
-
-           let newArray = [];
-            for (let index = 0; index < results.length; index++) {
-              
-              if (results[index].opening_hours) {
-                
-                newArray.push(results[index]);
-              }
-              
-              
+          let newArray = [];
+          for (let index = 0; index < results.length; index++) {
+            if (results[index].opening_hours) {
+              newArray.push(results[index]);
             }
+          }
 
-            let newerArray = [];
-            for (let index = 0; index < newArray.length; index++) {
-              
-              if (newArray[index].opening_hours.open_now != null) {
-                
-                newerArray.push(newArray[index]);
-              }
-              
-              
+          let newerArray = [];
+          for (let index = 0; index < newArray.length; index++) {
+            if (newArray[index].opening_hours.open_now != null) {
+              newerArray.push(newArray[index]);
             }
-
-
-
-
-
-
+          }
 
           for (var i = 0; i < newerArray.length; i++) {
             createMarker(newerArray[i]);
@@ -213,6 +199,7 @@ export default {
 </script>
 
 <style>
+@import url("https://fonts.googleapis.com/css?family=Trirong");
 body {
   background-color: #2176ae;
 }
@@ -223,7 +210,6 @@ body {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
-
 }
 #map-and-results {
   display: grid;
@@ -240,20 +226,25 @@ body {
 /*results grid*/
 #results {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-gap:20px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-rows: minmax(50px, auto);
+  grid-gap: 50px;
+  grid-gap: 20px;
   padding-left: 50px;
 }
-#one-spot {
-  background-color: #fcfcfc;
 
-  height: 50px;
+#one-spot {
+  background: linear-gradient(90deg, rgb(255, 246, 108), rgb(255, 18, 0));
+
+  height: 145px;
   width: 230px;
 
   border-radius: 10px;
+
+
+
   
 }
-
 
 #all-the-spots {
   width: 70%;
@@ -263,7 +254,6 @@ body {
   margin: 10px;
 }
 #chicken-bg img {
-
 }
 #chicken-bg img {
   width: 100%;
@@ -272,4 +262,36 @@ body {
   right: 0;
   z-index: -1;
 }
+@keyframes happychicken {
+  from {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.08);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+.rating-on-card {
+  position: relative;
+  font-size: 50px;
+  z-index: 10;
+  font-family: "Trirong", serif;
+  color: white;
+  font-weight: bold;
+}
+.rating-on-card img {
+  position: absolute;
+  top: 10px;
+  right: 25px;
+  z-index: -1;
+  width: 20%;
+  animation: happychicken 1.7s infinite;
+}
+.rating-on-card img:hover {
+}
+
+
 </style>

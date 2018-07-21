@@ -2,9 +2,9 @@
     <div id="spot-container" >
 
         
-      <button class = "place-button" @click="callModal(), updatePlace(places)">{{places.name}}</button>
+      
         <div id="results-one"></div>
-
+        <button class = "place-button" @click="callModal(), updatePlace(places)">{{places.name}}</button>
 
 
         <div id="modal-container">
@@ -266,4 +266,24 @@ export default {
   color:red;
   transition: 200ms linear all;
 }
+
+/*BUTTON*/
+
+button{
+  background-color:peachpuff;
+
+
+}
+
+
+button:hover{
+  transform: scale(1.14);
+  border-radius:10px;
+  border-color:pink;
+  transition-duration: 200ms;
+}
+
+
+
+
 </style>
