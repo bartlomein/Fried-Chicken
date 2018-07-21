@@ -247,8 +247,8 @@ body {
 #one-spot {
   background-color: #fcfcfc;
 
-  height: 80px;
-  width: 200px;
+  height: 50px;
+  width: 230px;
 
   border-radius: 10px;
   

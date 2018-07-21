@@ -1,8 +1,8 @@
 <template>
     <div id="spot-container" >
-      <div class = "spot-title"> {{places.name}}</div>
+
         
-      <button @click="callModal(), updatePlace(places)"></button>
+      <button class = "place-button" @click="callModal(), updatePlace(places)">{{places.name}}</button>
         <div id="results-one"></div>
 
 
@@ -197,6 +197,11 @@ export default {
   padding: 10px;
   margin: 15px;
   box-shadow: 2px 2px 20px #6d6969;
+}
+.place-button{
+  height: 80%;
+  width: 80%;
+  font-size:16px;
 }
 .rating {
   text-align: left;
