@@ -1,9 +1,11 @@
 <template>
+
     <div id="spot-container" >
+
         {{places.name}}
         <br>
         <div id="results-one"></div>
-        <div class = "btn" @click="callModal(), updatePlace(places), formatAddress(places)">More Info</div>
+        <div class = "btn" @click="callModal(), updatePlace(places)">More Info</div>
 
 
         <div id="modal-container">
@@ -95,33 +97,28 @@ export default {
   props: ["places"],
   watch:{
     places(){
-      console.log(places)
-      this.detailedPlace = places;
+      // console.log(places)
+      // this.detailedPlace = places;
     }
   },
   data: function() {
     return {
-      placeId: "",
-      detailedPlace: null,
+      placeId: this.places.place_id,
+      detailedPlace: this.places,
       formattedPhone: "",
       phone: null,
       formattedAddress: ""
     };
   },
   mounted() {
-    console.log(this.places)
+
   },
   
   methods: {
     callModal() {
       this.$refs.modal.open();
     },
-    formatAddress(places) {
-      console.log(this.detailedPlace.adr_address);
-    },
-    testLog() {
-      console.log("test");
-    },
+
     openWebsite(site){
       window.open(site);
     },
@@ -138,9 +135,9 @@ export default {
       window.open(newphone);
     },
     updatePlace(places) {
-      console.log(places);
-      this.placeId = places.place_id;
-      console.log(this.placeId);
+
+
+
       let vm = this;
 
       let request = {

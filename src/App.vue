@@ -73,14 +73,32 @@ export default {
       function callback(results, status) {
         if (status == google.maps.places.PlacesServiceStatus.OK) {
           vm.$nextTick(function() {
-            console.log(results);
 
-            let newArray = results.filter(function (item) {
-	              return item.opening_hours.open_now;
-            });
-            console.log(newArray);
 
-            vm.placesArray = newArray;
+            let newArray = [];
+            for (let index = 0; index < results.length; index++) {
+              
+              if (results[index].opening_hours) {
+                
+                newArray.push(results[index]);
+              }
+              
+              
+            }
+
+            let newerArray = [];
+            for (let index = 0; index < newArray.length; index++) {
+              
+              if (newArray[index].opening_hours.open_now != null) {
+                
+                newerArray.push(newArray[index]);
+              }
+              
+              
+            }
+
+
+            vm.placesArray = newerArray;
           });
 
           vm.toggleDetail();
@@ -121,8 +139,37 @@ export default {
 
       function callback(results, status) {
         if (status === google.maps.places.PlacesServiceStatus.OK) {
-          for (var i = 0; i < results.length; i++) {
-            createMarker(results[i]);
+
+           let newArray = [];
+            for (let index = 0; index < results.length; index++) {
+              
+              if (results[index].opening_hours) {
+                
+                newArray.push(results[index]);
+              }
+              
+              
+            }
+
+            let newerArray = [];
+            for (let index = 0; index < newArray.length; index++) {
+              
+              if (newArray[index].opening_hours.open_now != null) {
+                
+                newerArray.push(newArray[index]);
+              }
+              
+              
+            }
+
+
+
+
+
+
+
+          for (var i = 0; i < newerArray.length; i++) {
+            createMarker(newerArray[i]);
           }
         }
       }
@@ -186,7 +233,7 @@ body {
 }
 #one-spot {
   background-color: #fcfcfc;
-  padding: 5px;
+
   height: 80px;
   width: 200px;
 
