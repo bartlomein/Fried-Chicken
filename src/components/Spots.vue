@@ -1,11 +1,10 @@
 <template>
-
     <div id="spot-container" >
-
-        {{places.name}}
-        <br>
+      <div class = "spot-title"> {{places.name}}</div>
+        
+      <button @click="callModal(), updatePlace(places)"></button>
         <div id="results-one"></div>
-        <div class = "btn" @click="callModal(), updatePlace(places)">More Info</div>
+
 
 
         <div id="modal-container">
@@ -221,10 +220,29 @@ export default {
   border-radius:5px;
 
 }
+
 #spot-container{
-  height: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+   display:flex;
+  justify-content: center;
+  align-items: center;
+  height:50px;
+  width:220px;
+
+
+  font-size:18px;
+  padding:5px;
+  border-radius:10px;
+
+  background-color:white;
+  box-shadow: 2px 2px 20px black;
 
 }
+
 #phone-word {
   font-weight: bold;
 }
@@ -233,5 +251,14 @@ export default {
 }
 #link-word{
   font-weight:bold;
+}
+.spot-title{
+  font-size: 16px;
+}
+.spot-title:hover{
+  font-weight:bold;
+  transform: scale(1.04);
+  color:red;
+  transition: 200ms linear all;
 }
 </style>

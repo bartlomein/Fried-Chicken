@@ -9,6 +9,7 @@
         <Address @send-location="updateLocation"></Address>
     </div>
     <div id="map-and-results">
+      
         <div id="map">
         </div>
 
@@ -24,6 +25,7 @@
         </div>
        
     </div>
+    
 
 
 
@@ -61,7 +63,8 @@ export default {
       let request = {
         location: new google.maps.LatLng(this.place.lat, this.place.lon),
         radius: "3000",
-        keyword: "chicken"
+        keyword: "chicken",
+
       };
 
       let container = document.getElementById("results");
@@ -74,17 +77,18 @@ export default {
         if (status == google.maps.places.PlacesServiceStatus.OK) {
           vm.$nextTick(function() {
 
-
             let newArray = [];
             for (let index = 0; index < results.length; index++) {
-              
-              if (results[index].opening_hours) {
-                
+              if (results[index].opening_hours ) {
                 newArray.push(results[index]);
               }
               
               
             }
+
+           
+
+
 
             let newerArray = [];
             for (let index = 0; index < newArray.length; index++) {
@@ -138,6 +142,14 @@ export default {
       }
 
       function callback(results, status) {
+
+        let newArray = [];
+        for (let index = 0; index < results.length; index++) {
+              if (results[index].opening_hours ) {
+                newArray.push(results[index]);
+              }
+        }
+
         if (status === google.maps.places.PlacesServiceStatus.OK) {
 
            let newArray = [];
@@ -221,7 +233,7 @@ body {
   padding-bottom: 20px;
 }
 #map {
-  height: 600px;
+  height: 400px;
   width: 400px;
 }
 
@@ -229,6 +241,7 @@ body {
 #results {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap:20px;
   padding-left: 50px;
 }
 #one-spot {
@@ -238,8 +251,9 @@ body {
   width: 200px;
 
   border-radius: 10px;
-  box-shadow: 2px 2px 20px black;
+  
 }
+
 
 #all-the-spots {
   width: 70%;
