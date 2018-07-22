@@ -283,6 +283,7 @@ max-height: 50px;
 }
 
 .copy-text{
+
   color:#1D3557;
   text-align:left;
   background-color:#FFF8F0;
@@ -330,6 +331,22 @@ max-height: 50px;
 
 
 /*MEDIA QUERIES*/
+@media only screen and (max-width: 1150px){
+  #search input{
+    width:90%;}
+    
+
+  }
+
+
+@media only screen and (max-width: 990px){
+#map{
+  display: none;
+
+
+}
+  
+}
 
 @media only screen and (max-width: 900px){
   #sub-logo h1{
