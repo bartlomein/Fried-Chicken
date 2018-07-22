@@ -3,6 +3,7 @@
 
         
         <div class = "result-name">{{places.name}}</div>
+        <div class = "avrg-rating" style = "padding-left:10px;">{{detailedPlace.formatted_phone_number}}</div>
         <div id="results-one">
           
         </div>
@@ -97,29 +98,63 @@
 <script>
 export default {
   props: ["places"],
-  watch:{
-    places(){
-      // console.log(places)
-      // this.detailedPlace = places;
-    }
-  },
+ 
   data: function() {
     return {
       placeId: this.places.place_id,
       detailedPlace: this.places,
       formattedPhone: "",
       phone: null,
-      formattedAddress: ""
+      formattedAddress: "",
+      avrgRating: this.places.rating
     };
   },
-  mounted() {
-
+   watch:{
+    detailedPlace(){
+      
+    }
   },
+  mounted() {
+console.log("peni")
+      let vm = this;
+
+      let request = {
+        placeId: this.placeId,
+        fields: [
+          "name",
+          "rating",
+          "formatted_phone_number",
+          "price_level",
+          "opening_hours",
+          "rating",
+          "review",
+          "adr_address",
+          "website",
+          "url",
+          "permanently_closed"
+        ]
+      };
+
+      let container = document.getElementById("results-one");
+      let service = new google.maps.places.PlacesService(container);
+
+      service.getDetails(request, callback);
+
+      function callback(place, status) {
+        if (status == google.maps.places.PlacesServiceStatus.OK) {
+          vm.detailedPlace = place;
+
+        }
+      }
+  },
+  
   
   methods: {
     callModal() {
       this.$refs.modal.open();
     },
+
+
 
     openWebsite(site){
       window.open(site);
@@ -202,9 +237,10 @@ export default {
   box-shadow: 2px 2px 20px #6d6969;
 }
 .place-button{
-  height: 80%;
-  width: 80%;
+  height: 30px;
+  width:  100px;
   font-size:16px;
+  margin-left: auto;
 }
 .rating {
   text-align: left;
@@ -234,10 +270,10 @@ export default {
 
 
    display:flex;
-  justify-content: center;
+
   align-items: center;
   height:50px;
-  width:220px;
+  width:420px;
 
 
   font-size:18px;
@@ -262,11 +298,6 @@ export default {
 
 /*BUTTON*/
 
-button{
-
-
-
-}
 
 
 
