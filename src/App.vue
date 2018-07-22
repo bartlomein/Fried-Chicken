@@ -8,38 +8,25 @@
     <div id="search">
         <Address @send-location="updateLocation"></Address>
     </div>
-    <div id="map-and-results">
-      
+    <fade-transition  >
+    <div id="map-and-results" v-show="tran">
+       
         <div id="map">
         </div>
-       <fade-transition  >
-        <div id="results" v-show="tran">
+        
+
+        <div id="results" >
             
                
                 <div id="one-spot" v-for="placeone in placesArray" :key="placeone.place_id" >
-                    
                     <Spots :places.sync="placeone" ></Spots>
-                    <div class = "rating-on-card good" v-if="placeone.rating > 4">
-                      
-                    {{placeone.rating}}<img src="./assets/chicken-face.png" alt="" srcset="">
-                    </div>
-                    <div   class = "rating-on-card bad" v-else >
-                      {{placeone.rating}}
-                    
-                    </div>
-                    
-            
                 </div>
-       
- 
-
-
         </div>
-        </fade-transition >
-  
+       
        
     </div>
-    
+     </fade-transition >
+  
 
 
 
@@ -64,7 +51,6 @@ export default {
       placesArray: null,
       showDetail: false,
       tran: false
-
     };
   },
   mounted() {},
@@ -74,7 +60,6 @@ export default {
       this.placesArray = null;
       this.$forceUpdate();
 
-      
       this.place.lat = this.place.geometry.location.lat();
       this.place.lon = this.place.geometry.location.lng();
       let vm = this;
@@ -113,7 +98,6 @@ export default {
           });
 
           vm.toggleDetail();
-          
         }
       }
     }
@@ -206,7 +190,7 @@ export default {
 <style>
 @import url("https://fonts.googleapis.com/css?family=Trirong");
 body {
-  background-color: #2176ae;
+  background-color: #f7fff7;
 }
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
@@ -231,7 +215,7 @@ body {
 /*results grid*/
 #results {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
   grid-template-rows: minmax(50px, auto);
   grid-gap: 50px;
   grid-gap: 20px;
@@ -239,16 +223,6 @@ body {
 }
 
 #one-spot {
-  background: linear-gradient(90deg, rgb(255, 246, 108), rgb(255, 18, 0));
-
-  height: 145px;
-  width: 230px;
-
-  border-radius: 10px;
-
-
-
-  
 }
 
 #all-the-spots {
@@ -297,6 +271,4 @@ body {
 }
 .rating-on-card img:hover {
 }
-
-
 </style>

@@ -2,13 +2,15 @@
     <div id="spot-container" >
 
         
-
-        <div id="results-one"></div>
-        <button class = "place-button" @click="callModal(), updatePlace(places)">{{places.name}}</button>
+        <div class = "result-name">{{places.name}}</div>
+        <div id="results-one">
+          
+        </div>
+        <button class = "place-button" @click="callModal(), updatePlace()"> More info</button>
 
 
         <div id="modal-container">
-            <sweet-modal ref="modal" :title="places.name">
+            <sweet-modal ref="modal" :title="detailedPlace.name">
                 <sweet-modal-tab title="Info" id="tab1">
                     <div id="details" v-if="detailedPlace">
                         <div id="typical-info">
@@ -134,7 +136,7 @@ export default {
 
       window.open(newphone);
     },
-    updatePlace(places) {
+    updatePlace() {
 
 
 
@@ -223,15 +225,13 @@ export default {
   background-color:#ffd166;
 
   
-  border-radius:5px;
+
 
 }
 
 #spot-container{
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
+
 
    display:flex;
   justify-content: center;
@@ -258,31 +258,18 @@ export default {
 #link-word{
   font-weight:bold;
 }
-.spot-title{
-  font-size: 16px;
-}
-.spot-title:hover{
-  font-weight:bold;
-  transform: scale(1.04);
-  color:red;
-  transition: 200ms linear all;
-}
+
 
 /*BUTTON*/
 
 button{
-  background-color:peachpuff;
+
 
 
 }
 
 
-button:hover{
-  transform: scale(1.14);
-  border-radius:10px;
-  border-color:pink;
-  transition-duration: 200ms;
-}
+
 
 
 
