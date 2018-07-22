@@ -2,7 +2,7 @@
     <div id="spot-container" >
 
         
-      
+
         <div id="results-one"></div>
         <button class = "place-button" @click="callModal(), updatePlace(places)">{{places.name}}</button>
 
@@ -88,6 +88,7 @@
 
             </sweet-modal>
         </div>
+
     </div>
 </template>
 

@@ -12,11 +12,11 @@
       
         <div id="map">
         </div>
-
-        <div id="results" >
-
-
-                <div id="one-spot" v-for="placeone in placesArray" :key="placeone.id">
+       <fade-transition  >
+        <div id="results" v-show="tran">
+            
+               
+                <div id="one-spot" v-for="placeone in placesArray" :key="placeone.place_id" >
                     
                     <Spots :places.sync="placeone" ></Spots>
                     <div class = "rating-on-card good" v-if="placeone.rating > 4">
@@ -28,14 +28,15 @@
                     
                     </div>
                     
-
+            
                 </div>
-
-
+       
+ 
 
 
         </div>
-
+        </fade-transition >
+  
        
     </div>
     
@@ -62,12 +63,14 @@ export default {
       lon: null,
       placesArray: null,
       showDetail: false,
-      transition: true
+      tran: false
+
     };
   },
   mounted() {},
   watch: {
     place() {
+      this.tran = false;
       this.placesArray = null;
       this.$forceUpdate();
 
@@ -106,9 +109,11 @@ export default {
 
             console.log(newerArray);
             vm.placesArray = newerArray;
+            vm.tran = true;
           });
 
           vm.toggleDetail();
+          
         }
       }
     }
