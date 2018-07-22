@@ -221,7 +221,7 @@ body {
 
 #logo-and-search{
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 2fr 2fr;
   align-items: center;
   justify-content: center;
   margin-bottom:20px;
@@ -229,11 +229,13 @@ body {
 
 }
 #search {
-  margin-right:20px; 
+  margin-right:0px; 
 
 }
 #search input{
   margin-left:20px;
+  margin-right:auto;
+  float: right
 }
 #map {
   height: 400px;
@@ -285,6 +287,7 @@ max-height: 50px;
   text-align:left;
   background-color:#FFF8F0;
   width:90%; 
+  max-width: 90%;
   padding:20px;
   z-index: -1;
   position:absolute;
@@ -324,5 +327,74 @@ max-height: 50px;
   position: absolute;
   bottom: 0px;
 }
+
+
+/*MEDIA QUERIES*/
+
+@media only screen and (max-width: 900px){
+  #sub-logo h1{
+    font-size:20px;
+    
+
+  }
+  #logo{
+  max-width: 50%;
+}
+  #chicken-bg{
+    width: 50%;
+  }
+  .copy-text h1{
+    font-size:50px;
+  }
+  .copy-text{
+    width: 100%;
+  }
+  #search input{
+    width:85%;}
+     .copy-text{
+    width: 100%;
+    max-width: 50%;
+  }
+  
+}
+
+
+@media only screen and (max-width: 600px){
+  #sub-logo h1{
+    font-size:20px;
+    
+
+  }
+  #search input{
+    width:85%;
+    }
+  #logo{
+  max-width: 50%;
+}
+  #chicken-bg{
+    display: none;
+  }
+  .copy-text h1{
+    font-size:40px;
+  }
+  .copy-text{
+    width: 100%;
+    max-width: 90%;
+  }
+  
+}
+@media only screen and (max-width: 400px){
+  #search input{
+    width:85%;
+    
+
+  }
+  
+
+}
+
+
+
+
 
 </style>

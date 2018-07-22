@@ -309,15 +309,8 @@ console.log("peni")
 #spot-container{
 display:grid;
 grid-template-columns: 1.5fr 0fr 1fr 50px 0.5fr;
-
-
   align-items: center;
-
-
   font-size:18px;
-
-
-
   background-color:white;
   
 
@@ -345,7 +338,7 @@ p {
 }
 
 .button {
-  background: #A3C3D9;
+  background: #E43B4A;
   border-color:none;
 
   color: #fff;

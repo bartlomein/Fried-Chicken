@@ -64,4 +64,31 @@ body {
   text-align: right;
 
 }
+
+
+@media only screen and (max-width: 1000px){
+  .search-location{
+    width: 500px;
+
+  }
+}
+
+@media only screen and (max-width: 600px){
+  .search-location{
+    width: 500px;
+
+  }
+}
+@media only screen and (max-width: 400px){
+  .search-location{
+    width: 300px;
+
+  }
+}
+@media only screen and (max-width: 300px){
+  .search-location{
+    width: 100px;
+
+  }
+}
 </style>
