@@ -1,6 +1,6 @@
 <template>
  <input ref="autocomplete" 
-        placeholder="Search" 
+        placeholder="Enter your location" 
         class="search-location"
         onfocus="value = ''" 
         type="text" />
@@ -53,15 +53,15 @@ body {
 
 .search-location {
   display: block;
-  width: 400px;
+  width: 800px;
   margin: 0 auto;
-  margin-top: 5vw;
+
   font-size: 20px;
   font-weight: 400;
   outline: none;
   height: 30px;
   line-height: 30px;
-  text-align: center;
-  border-radius: 10px;
+  text-align: right;
+
 }
 </style>

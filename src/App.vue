@@ -1,36 +1,44 @@
 <template>
 <div id="app">
-    <div id="logo"> </div>
-
-    <!-- <div id="chicken-bg">
-        <img src="./assets/chicken-bg.png" alt="" srcset="">
-    </div> -->
-    <div id="search">
-        <Address @send-location="updateLocation"></Address>
-    </div>
-    <fade-transition  >
-    <div id="map-and-results" v-show="tran">
-       
-        <div id="map">
+    <div id="logo-and-search">
+        <div id="logo">
+            <div id="sub-logo">
+                <a href="./">
+                    <h1>friedchicken.app</h1>
+                </a>
+            </div>
         </div>
-        
+        <div id="search">
+            <Address @send-location="updateLocation"></Address>
+        </div>
+    </div>
+    <div class="copy-text">
+        <h1>
+            Welcome to
+            <span class="yellow">friedchicken.app!</span>
+        </h1>
+        <h2>Find your new favorite chicken spot by putting in your address up top!</h2>
+    </div>
+    <div id="chicken-bg">
+        <img src="./assets/chicken-sammich-4.png" alt="" srcset="">
+    </div>
+    <fade-transition>
+        <div id="map-and-results" v-show="tran">
 
-        <div id="results" >
-            
-               
-                <div id="one-spot" v-for="placeone in placesArray" :key="placeone.place_id" >
-                    <Spots :places.sync="placeone" ></Spots>
+            <div id="map">
+            </div>
+            <div id="results">
+                <div id="one-spot" v-for="placeone in placesArray" :key="placeone.place_id">
+                    <Spots :places.sync="placeone"></Spots>
                 </div>
+            </div>
         </div>
-       
-       
-    </div>
-     </fade-transition >
-  
-
+    </fade-transition>
+    <div class="footer">Made with love for chicken and Vue</div>
 
 
 </div>
+
 </template>
 
 <script>
@@ -190,85 +198,131 @@ export default {
 <style>
 @import url("https://fonts.googleapis.com/css?family=Trirong");
 body {
-  background-color: #f7fff7;
+  
+
+  margin: 0px;
+  background-color: #E63946;
+  position: relative;
 }
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
+
+  height: 100vh;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+
 }
 #map-and-results {
   display: grid;
-  grid-template-columns: 400px auto;
+  grid-template-columns: 400px minmax(100px, auto);
+}
+
+#logo-and-search{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  justify-content: center;
+  margin-bottom:20px;
+
+
 }
 #search {
-  padding-bottom: 20px;
+  margin-right:20px; 
+
+}
+#search input{
+  margin-left:20px;
 }
 #map {
   height: 400px;
   width: 400px;
 }
+#enter-address{
 
+  text-align: center;
+  padding:0px 20px 0px 20px;
+}
 /*results grid*/
 #results {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-  grid-template-rows: minmax(50px, auto);
-  grid-gap: 50px;
-  grid-gap: 20px;
-  padding-left: 50px;
-}
+  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
 
+  margin-left: 50px;
+  box-shadow: 5px 4px 30px black;
+  background-color:white;
+  
+}
+.yellow{
+  color:#FFCA3A;
+}
+#logo{
+  text-align:left;
+}
+#logo h3{
+  margin:5px;
+}
+#main-logo{
+  color:#70C1B3;
+}
+#sub-logo h1{
+  margin:20px;
+  font-size:40px;
+  color:#FEC94A;
+}
+#sub-logo a{
+  text-decoration: none;
+}
 #one-spot {
+
+max-height: 50px;
+  align-items:center;
 }
 
+.copy-text{
+  color:#1D3557;
+  text-align:left;
+  background-color:#FFF8F0;
+  width:90%; 
+  padding:20px;
+  z-index: -1;
+  position:absolute;
+}
+
+.copy-text h1{
+  font-size:65px;
+  font-weight: bold;
+}
+.copy-text h2{
+  font-size:20px;
+}
 #all-the-spots {
   width: 70%;
-  border-radius: 10px;
+
 
   padding: 5px;
   margin: 10px;
 }
-#chicken-bg img {
+#chicken-bg{
+  position:absolute;
+  top:0px;
+  right:0px;
+  
+  
+  z-index: -1;
 }
 #chicken-bg img {
-  width: 100%;
-
-  top: 0;
+  float:right;
+  width: 97%;
+    top: 0px;
   right: 0;
+  
   z-index: -1;
 }
-@keyframes happychicken {
-  from {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.08);
-  }
-  to {
-    transform: scale(1);
-  }
+.footer{
+  position: absolute;
+  bottom: 0px;
 }
 
-.rating-on-card {
-  position: relative;
-  font-size: 50px;
-  z-index: 10;
-  font-family: "Trirong", serif;
-  color: white;
-  font-weight: bold;
-}
-.rating-on-card img {
-  position: absolute;
-  top: 10px;
-  right: 25px;
-  z-index: -1;
-  width: 20%;
-  animation: happychicken 1.7s infinite;
-}
-.rating-on-card img:hover {
-}
 </style>
