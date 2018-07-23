@@ -82,13 +82,13 @@ body {
 }
 @media only screen and (max-width: 500px){
   .search-location input{
-    width: 300px;
+    width: 250px;
 
   }
 }
 @media only screen and (max-width: 300px){
   .search-location{
-    width: 100px;
+    width: 130px !important;
 
   }
 }

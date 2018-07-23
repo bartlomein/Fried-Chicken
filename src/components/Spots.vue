@@ -281,7 +281,18 @@ console.log("peni")
 .rating {
   text-align: left;
   padding: 5px 10px 5px 10px;
+
 }
+#phoneNumber{
+  color:#4392F1;
+  font-weight:bold;
+}
+#website{
+  color:#4392F1;
+  font-weight:bold;
+}
+#website,#phoneNumber, 
+{cursor: pointer;}
 
 .review-text {
   padding: 10px 20px 10px 20px;
@@ -314,11 +325,14 @@ grid-template-columns: 1.5fr 0fr 1fr 50px 0.5fr;
   font-size:18px;
   background-color:#FFF8F1;
   
-
+}
+.prices-full{
+  font-weight: bold;
 }
 
 #phone-word {
   font-weight: bold;
+  
 }
 #address-word {
   font-weight: bold;
@@ -328,6 +342,16 @@ grid-template-columns: 1.5fr 0fr 1fr 50px 0.5fr;
 }
 
 /*BUTTON */
+.button button{
+  width:100px;
+  height: 30px;
+  color:white;
+  font-weight: bold;
+  font-size:14px;
+  border-radius:5px;
+  background-color:#4392F1;
+  cursor: pointer;
+}
 p {
 
 
@@ -374,14 +398,15 @@ text-align: center;
 }
 .button button{
   width:100px;
-  color:#FDC856;
+  height: 30px;
+  color:white;
   font-weight: bold;
   font-size:14px;
   border-radius:5px;
-  background-color:#5998C5;
+  background-color:#4392F1;
 }
 .rating{
-  text-align: center;
+  text-align: left;
 }
 .prices-full{
   display:inline;

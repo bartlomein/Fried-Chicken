@@ -36,7 +36,7 @@
             
         </div>
     </fade-transition>
-    <div class="footer">Made with love for chicken and Vue</div>
+    <div class="footer">Made with love for chicken and Vue by <a href ="https://github.com/bartlomein/Fried-Chicken">Me</a> </div>
 
 
 </div>
@@ -217,14 +217,19 @@ body {
 
 }
 .footer{
+  font-weight:bold;
    position: fixed;
     bottom: 0;
     width: 100%;
     color:white;
-    background-color:#e43b4a;
+    background-color:#E63946;
     height: 30px;
     border-radius: 3px 3px 0px 0px
 
+}
+.footer a{
+  text-decoration: none;
+  color:#FFCA3A;
 }
 #map-and-results {
  
@@ -270,6 +275,7 @@ width: 400px;
   float:right;
   padding:20px;
   width: 65%;
+
 
   
 }
@@ -345,16 +351,40 @@ max-height: 50px;
 
 
 /*MEDIA QUERIES*/
+@media only screen and (max-width: 1360px){
+  .copy-text h1{
+    max-width: 60%;
+  }
+
+}
+@media only screen and (max-width: 1300px){
+
+
+  #chicken-bg img {
+    width:90% !important;
+  }
+    .copy-text h1{
+      font-size:58px;
+    }
+
+  }
 @media only screen and (max-width: 1257px){
 
   #results{
-    width:100%;
+    width:94%;
     
+  }
+  #map{
+    width:80%;
+    margin:50px auto !;
+  }
+  #chicken-bg img {
+    width:80% !important;
   }
     
 
   }
-@media only screen and (max-width: 1257px){
+@media only screen and (max-width: 1200px){
   #search input{
     width:90%;}
     #map, #results{
@@ -363,12 +393,28 @@ max-height: 50px;
     
   }
   #map{
-    margin:30px  auto !important ;
+    margin:50px  auto !important ;
+  }
+  #results{
+    margin: 0 auto !important;
+  }
+  .copy-text{
+    width:72%;
+  }
+  .copy-text h1{
+    max-width:60%;
   }
     
 
   }
 
+@media only screen and (max-width: 1130px){
+   .copy-text h2{
+    font-size:16px;
+  }
+    
+
+  }
 
 @media only screen and (max-width: 990px){
 #map-and-results{
@@ -376,6 +422,12 @@ max-height: 50px;
 }
   #map{
   
+  }
+   #chicken-bg img {
+    width:60% !important;
+  }
+  .copy-text{
+    width:80%;
   }
 }
 
@@ -388,24 +440,52 @@ max-height: 50px;
   #logo{
   max-width: 50%;
 }
-  #chicken-bg{
-    width: 50%;
+#chicken-bg{
+  top:40px;
+}
+  #chicken-bg img{
+    width: 60% !important;
   }
   .copy-text h1{
     font-size:50px;
   }
-  .copy-text{
-    width: 100%;
+  .copy-text h2{
+    max-width:70%;
   }
   #search input{
-    width:85%;}
-     .copy-text{
-    width: 100%;
-    max-width: 50%;
+    width:85%;
+  }
+    .copy-text{
+    width: 72%;
+    
   }
   
 }
+@media only screen and (max-width: 800px){
+  .copy-text h1{
+    max-width:50%;
+    
 
+  }
+  
+  
+}
+@media only screen and (max-width: 753px){
+  .copy-text h1{
+    font-size:36px;
+    
+
+  }
+  
+  
+}
+
+@media only screen and (max-width: 650px){
+ #chicken-bg img{
+    max-width:50% !important;
+    top:50px;
+  }
+  }
 
 @media only screen and (max-width: 600px){
   #sub-logo h1{
@@ -419,27 +499,41 @@ max-height: 50px;
   #logo{
   max-width: 50%;
 }
-  #chicken-bg{
-    display: none;
+#chicken-bg{
+  top:30px;
+}
+  #chicken-bg img{
+    width:42% !important;
+    top:50px;
   }
   .copy-text h1{
     font-size:40px;
   }
   .copy-text{
     width: 100%;
-    max-width: 90%;
+    max-width: 92%;
+  }
+  
+
+  
+}
+@media only screen and (max-width: 550px){
+  #chicken-bg {
+
+    top:300px;
+  }
+  #chicken-bg img{
+    width:60% !important;
+  }
+  .copy-text h1{
+    max-width: 94% !important; 
   }
   
 
   
 }
 @media only screen and (max-width: 500px){
-  #results {
 
-    
-    
-
-  }
   #sub-logo a h1{
     font-size:14px;
     margin: 10px;
@@ -448,15 +542,23 @@ max-height: 50px;
     max-height: 100px;
   }
   #map, #results{
-     width:90%;
+     max-width: 95%;
+     
     
+  }
+  .copy-text h2{
+    max-width: 60%;
+  }
+  .copy-text{
+    max-width:80%;
+    border-radius: 0px 10px 5px 0px;
   }
   
 
 }
 @media only screen and (max-width: 400px){
   #search input{
-    width:85%;
+    width:230px;
     
 
   }
