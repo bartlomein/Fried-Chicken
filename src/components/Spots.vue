@@ -29,7 +29,7 @@
 
 
           </div>
-          <div>
+          <div class = "prices-full">
             <div v-if="places.price_level ==1">$</div>
             <div v-else-if="places.price_level ==2">$$</div>
             <div v-else-if="places.price_level ==3">$$$</div>
@@ -37,8 +37,9 @@
             <div v-else> NA </div>
             
           </div>
-        <button class = "place-button button" @click="callModal(), updatePlace()">Info</button>
-
+          <div class = "button">
+        <button class = "" @click="callModal(), updatePlace()">INFO</button>
+          </div>
 
         <div id="modal-container">
             <sweet-modal ref="modal" :title="detailedPlace.name">
@@ -311,7 +312,7 @@ display:grid;
 grid-template-columns: 1.5fr 0fr 1fr 50px 0.5fr;
   align-items: center;
   font-size:18px;
-  background-color:white;
+  background-color:#FFF8F1;
   
 
 }
@@ -337,23 +338,61 @@ p {
   color: #222;
 }
 
-.button {
-  background: #E43B4A;
-  border-color:none;
 
-  color: #fff;
-  border-radius: 10px;
-  text-decoration: none;
-  font-size: 1px;
-  margin: 0 15px;
-}
 
 @media only screen and (max-width: 990px){
 #map{
-  display: none;
+
 }
   
 }
+
+@media only screen and (max-width: 500px){
+#spot-container{
+  display: grid;
+  grid-template-columns: 1fr;
+  text-align: center;
+
+  margin:10px;
+  padding:5px;
+
+  background-color:white;
+  border-color:#1F3656;
+  
+  color:#1F3656;
+  border-radius: 10px;
+  box-shadow: 5px 5px 10px darkgray;
+  
+
+
+  
+}
+.result-name{
+font-size: 20px;
+font-weight: bold;
+text-align: center;
+}
+.button button{
+  width:100px;
+  color:#FDC856;
+  font-weight: bold;
+  font-size:14px;
+  border-radius:5px;
+  background-color:#5998C5;
+}
+.rating{
+  text-align: center;
+}
+.prices-full{
+  display:inline;
+}
+  .prices-full{
+  display:none;
+}
+}
+
+
+
 
 /*BUTTON*/
 

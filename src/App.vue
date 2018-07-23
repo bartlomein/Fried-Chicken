@@ -24,14 +24,16 @@
     </div>
     <fade-transition>
         <div id="map-and-results" v-show="tran">
-
-            <div id="map">
-            </div>
-            <div id="results">
+          <div id="results">
                 <div id="one-spot" v-for="placeone in placesArray" :key="placeone.place_id">
                     <Spots :places.sync="placeone"></Spots>
                 </div>
             </div>
+          <div id="map">
+            </div>
+
+            
+            
         </div>
     </fade-transition>
     <div class="footer">Made with love for chicken and Vue</div>
@@ -214,9 +216,18 @@ body {
   color: #2c3e50;
 
 }
+.footer{
+   position: fixed;
+    bottom: 0;
+    width: 100%;
+    color:white;
+    background-color:#e43b4a;
+    height: 30px;
+    border-radius: 3px 3px 0px 0px
+
+}
 #map-and-results {
-  display: grid;
-  grid-template-columns: 400px minmax(100px, auto);
+ 
 }
 
 #logo-and-search{
@@ -239,21 +250,27 @@ body {
 }
 #map {
   height: 400px;
-  width: 400px;
+width: 400px;
+  float:left;
+  box-shadow: 5px 4px 30px black;
 }
 #enter-address{
-
   text-align: center;
   padding:0px 20px 0px 20px;
 }
+
 /*results grid*/
 #results {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+  /* display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr)); */
 
-  margin-left: 50px;
+
   box-shadow: 5px 4px 30px black;
-  background-color:white;
+  background-color:#FFF8F1;
+  float:right;
+  padding:20px;
+  width: 65%;
+
   
 }
 .yellow{
@@ -324,28 +341,42 @@ max-height: 50px;
   
   z-index: -1;
 }
-.footer{
-  position: absolute;
-  bottom: 0px;
-}
+
 
 
 /*MEDIA QUERIES*/
-@media only screen and (max-width: 1150px){
+@media only screen and (max-width: 1257px){
+
+  #results{
+    width:100%;
+    
+  }
+    
+
+  }
+@media only screen and (max-width: 1257px){
   #search input{
     width:90%;}
+    #map, #results{
+     float: none;
+    display: block; 
+    
+  }
+  #map{
+    margin:30px  auto !important ;
+  }
     
 
   }
 
 
 @media only screen and (max-width: 990px){
-#map{
-  display: none;
-
-
+#map-and-results{
+  display: inline;
 }
+  #map{
   
+  }
 }
 
 @media only screen and (max-width: 900px){
@@ -383,7 +414,7 @@ max-height: 50px;
 
   }
   #search input{
-    width:85%;
+    width:100%;
     }
   #logo{
   max-width: 50%;
@@ -399,12 +430,39 @@ max-height: 50px;
     max-width: 90%;
   }
   
+
+  
+}
+@media only screen and (max-width: 500px){
+  #results {
+
+    
+    
+
+  }
+  #sub-logo a h1{
+    font-size:14px;
+    margin: 10px;
+  }
+  #one-spot{
+    max-height: 100px;
+  }
+  #map, #results{
+     width:90%;
+    
+  }
+  
+
 }
 @media only screen and (max-width: 400px){
   #search input{
     width:85%;
     
 
+  }
+  #map, #results{
+     width:90%;
+    
   }
   
 

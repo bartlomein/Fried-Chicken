@@ -66,11 +66,12 @@ body {
 }
 
 
-@media only screen and (max-width: 1000px){
+@media only screen and (max-width: 1200px){
   .search-location{
     width: 500px;
 
   }
+  
 }
 
 @media only screen and (max-width: 600px){
@@ -79,8 +80,8 @@ body {
 
   }
 }
-@media only screen and (max-width: 400px){
-  .search-location{
+@media only screen and (max-width: 500px){
+  .search-location input{
     width: 300px;
 
   }
