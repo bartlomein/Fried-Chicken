@@ -146,7 +146,7 @@ export default {
     }
   },
   mounted() {
-console.log("peni")
+
       let vm = this;
 
       let request = {

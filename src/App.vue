@@ -102,7 +102,7 @@ export default {
               }
             }
 
-            console.log(newerArray);
+            
             vm.placesArray = newerArray;
             vm.tran = true;
           });
