@@ -8,7 +8,7 @@
         <div id="results-one">
 
         </div>
-        <div class = "rating">
+        <div class = "rating-reg rating">
 
 
 
@@ -405,8 +405,8 @@ text-align: center;
   border-radius:5px;
   background-color:#4392F1;
 }
-.rating{
-  text-align: left;
+.rating-reg{
+  text-align: center;
 }
 .prices-full{
   display:inline;
